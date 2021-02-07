@@ -20,12 +20,9 @@ service_triggers () {
 
 start_service() {
     mkdir -p ${TMP}
-#    echo "#!/bin/sh" > ${TMP}/postStart.sh
-#    chmod +x ${TMP}/postStart.sh
 
     config_load "eoip"
     config_foreach start_eoip eoip
-    config_foreach start_eoip_vlan eoip
 }
 
 stop_service() {
@@ -65,21 +62,4 @@ start_eoip() {
 	    INDEX=$((INDEX+1))
 	fi
     fi
-}
-
-start_eoip_vlan() {
-    local section="$1" runas_root
-    config_get name "$section" name
-    config_list_foreach "$section" vlan handle_vlan ${name}
-}
-
-handle_vlan() {
-    local val="$1"
-    local name="$2"
-    if ip link | grep -q zeoip${name}.${val}; then
-        /sbin/ip link del zeoip${name}.${val}
-    fi
-
-#    echo "/sbin/ip link add link zeoip${name} name zeoip${name}.${val} type vlan id ${val}" >> ${TMP}/postStart.sh
-    logger -t eoip "IF: $name Vlan : $val"
 }
