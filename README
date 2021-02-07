@@ -1,4 +1,13 @@
-Attention!
-If you use dynamic=1 option, take attention that there is no authorization,
-and it is not secure. It is not good idea to use this feature with public
-ip or insecure(not completely under your control, each host) network.
+place Makefile in:
+package/network/services/eoip
+
+
+/etc/config/eoip
+
+config eoip
+        option name '0'			# name of zeoip interface -> here zeoip0
+        option idtun '123'		# Tunnel ID
+        option dst '169.254.101.30'	# peer address
+        list vlan '555'			# meaningless, OpenWRT will handle zeoip0.555
+	bind '192.168.1.1'		# optional local address
+	dynamic '0'			# if 0 then peer is fixed with DST
