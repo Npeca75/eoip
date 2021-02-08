@@ -12,9 +12,7 @@ TMP="/var/run/eoip"
 
 service_triggers () {
     procd_open_trigger
-    procd_add_reload_trigger "eoip"
     procd_add_config_trigger "config.change" "eoip" /etc/init.d/eoip restart
-    procd_add_config_trigger "config.change" "/etc/config/eoip" /etc/init.d/eoip restart
     procd_close_trigger
 }
 
