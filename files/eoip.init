@@ -32,7 +32,7 @@ stop_service() {
 start_eoip() {
     local section="$1"
     config_get_bool enabled "$section" enabled
-    if [ "$enabled" -gt 0 ]; then
+    if [ "$enabled" = "1" ]; then
 
 	config_get name "$section" name
 	config_get idtun "$section" idtun
