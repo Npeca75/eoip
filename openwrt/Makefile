@@ -49,12 +49,12 @@ CONFIGURE_ARGS += \
         --with-lzo-include="$(STAGING_DIR)/usr/include/lzo"
 
 define Package/eoip/install
-        $(INSTALL_DIR) $(1)/usr/bin
-        $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/eoip $(1)/usr/bin/
-        $(INSTALL_DIR) $(1)/etc/config
-        $(INSTALL_DATA) $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/files/eoip.config $(1)/etc/config/eoip
-        $(INSTALL_DIR) $(1)/etc/init.d
-        $(INSTALL_BIN) $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/files/eoip.init $(1)/etc/init.d/eoip
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/eoip $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/files/eoip.config $(1)/etc/config/eoip
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/files/eoip.init $(1)/etc/init.d/eoip
 endef
 
 $(eval $(call BuildPackage,eoip))
